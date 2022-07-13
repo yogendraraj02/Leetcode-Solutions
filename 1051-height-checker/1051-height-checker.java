@@ -1,11 +1,22 @@
 class Solution {
     public int heightChecker(int[] heights) {
-        int[] exp = new int[heights.length];
-        exp = heights.clone();
-        Arrays.sort(exp);
-        int cnt = 0;
-        for(int i=0; i < exp.length;i++){
-            if(heights[i] != exp[i]) cnt++;
+        int[] counter = new int[101];
+        for(int i=0; i < heights.length;  i++){
+            counter[heights[i]]++;
+        }
+        int i = 0 , j = 0 , cnt = 0;
+        while(i < counter.length){
+            if(counter[i] == 0 ){
+                i++;
+                continue;
+            } 
+            else{
+                if(i != heights[j]) cnt++;
+                counter[i]--;
+                j++;
+                i--;
+            }
+            i++;
         }
         return cnt;
     }
