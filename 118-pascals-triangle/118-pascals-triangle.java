@@ -8,8 +8,8 @@ class Solution {
                         inner.add(1);
                         continue;
                     }
-                List<Integer> prev = outer.get(i-1);
-                inner.add(prev.get(j-1) + prev.get(j));
+                //List<Integer> prev = outer.get(i-1);
+                inner.add(outer.get(i-1).get(j-1) + outer.get(i-1).get(j));
             }
             outer.add(inner);
         }
