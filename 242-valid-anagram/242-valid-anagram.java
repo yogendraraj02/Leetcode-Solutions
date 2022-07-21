@@ -6,6 +6,7 @@ class Solution {
             freq[ch - 'a']++;
         }
         for(char ch : t.toCharArray()){
+            if(freq[ch-'a'] == 0) return false;
             freq[ch - 'a']--;
         }
         for(int i=0; i < 26;i++){
