@@ -34,10 +34,10 @@ class Solution {
        if(lefttail == null){
            head = prev;
        }else {
-           lefttail.next = prev;         // 1 -> 4
+           lefttail.next = prev;         
         }
             
-        revLast.next = forw;          //rightHead;
+        revLast.next = forw;          
         return head;
     }
 }
