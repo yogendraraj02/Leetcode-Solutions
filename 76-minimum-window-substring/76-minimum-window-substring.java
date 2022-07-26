@@ -8,22 +8,21 @@ class Solution {
         for(char ch : p.toCharArray()){
             pattern.put(ch,pattern.getOrDefault(ch,0)+1);
         }
-        int matched = 0;
+        int matched = 0, minLength = s.length()+1 , substrStart = -1;
         for(int i=0; i < s.length() ; i++){
             
             char right = s.charAt(i);
             if(pattern.containsKey(right)){
                 pattern.put(right , pattern.getOrDefault(right,0)-1);
-                if(pattern.get(right)==0)
+                if(pattern.get(right) >= 0)
                     matched++;
             }
             
-            while(matched == pattern.size()){
+            while(ws < s.length() && matched == p.length()){
                 
-                if(i - ws +1 < ans.length()){
-                        ans = s.substring(ws,i+1);
-                } else if(ans.length() == 0){
-                    ans = s.substring(ws,i+1);
+                if(i - ws +1 < minLength){
+                    minLength = i -ws +1;
+                    substrStart = ws;
                 }
                 char left = s.charAt(ws);
                 if(pattern.containsKey(left)){
@@ -38,7 +37,7 @@ class Solution {
             
         }
         
-        return ans;
+        return minLength > s.length() ? "" : s.substring(substrStart , substrStart + minLength);
         
     }    
     
