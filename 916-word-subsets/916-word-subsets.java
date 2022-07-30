@@ -27,24 +27,22 @@ class Solution {
         }    
         
         for(String word : words1){
-            int match = 0;
             int freq[] = new int[26];
             for(char ch : word.toCharArray()){
-                if(mainfreq[ch-'a'] > 0){
-                    freq[ch - 'a']++;
-                    if(freq[ch-'a'] == mainfreq[ch-'a']){
-                        match++;
-                    }
-                }
-                int size = getSize(mainfreq);
-                if(match == size){
-                    universal.add(word);
-                    break;
-                }
+                freq[ch - 'a']++;
+            }
+            if(isSubset(freq , mainfreq)){
+                universal.add(word);
             }
             
         }
         
         return universal;
+    }
+    public boolean isSubset(int[] word,int[] set){
+        for(int i=0; i < 26;i++){
+            if(set[i] > word[i]) return false;  //that is mainfreq should be less or equal  
+        }
+        return true;
     }
 }
