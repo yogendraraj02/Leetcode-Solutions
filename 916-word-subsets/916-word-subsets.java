@@ -1,18 +1,27 @@
 class Solution {
+    public int getSize(int[] freq){
+        int cnt = 0;
+        for(int i=0; i < 26;i++){
+            if(freq[i] >= 1) cnt++;
+        }
+        return cnt;
+    }
     public List<String> wordSubsets(String[] words1, String[] words2) {
-        HashMap<Character,Integer> hmap = new HashMap<>();
+        
+        int[] mainfreq = new int[26];
         List<String> universal = new ArrayList<>();
         
         for(String word : words2){
-            HashMap<Character,Integer> temp = new HashMap<>();
+            int[] temp = new int[26];
             for(char wc : word.toCharArray()){
-                temp.put(wc , temp.getOrDefault(wc,0)+1);
-                if(hmap.containsKey(wc)){
-                    if(hmap.get(wc) < temp.get(wc)){
-                        hmap.put(wc,temp.get(wc));
+                //temp.put(wc , temp.getOrDefault(wc,0)+1);
+                temp[wc - 'a']++;
+                if(mainfreq[wc-'a'] > 0){
+                    if(mainfreq[wc-'a'] < temp[wc-'a'] ){
+                        mainfreq[wc -'a'] = temp[wc-'a'];
                     }
                 } else{
-                    hmap.put(wc,1);
+                    mainfreq[wc-'a'] = 1;
                 }
             }
         }    
@@ -21,13 +30,14 @@ class Solution {
             int match = 0;
             int freq[] = new int[26];
             for(char ch : word.toCharArray()){
-                if(hmap.containsKey(ch)){
+                if(mainfreq[ch-'a'] > 0){
                     freq[ch - 'a']++;
-                    if(freq[ch-'a'] == hmap.get(ch)){
+                    if(freq[ch-'a'] == mainfreq[ch-'a']){
                         match++;
                     }
                 }
-                if(match == hmap.size()){
+                int size = getSize(mainfreq);
+                if(match == size){
                     universal.add(word);
                     break;
                 }
