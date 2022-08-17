@@ -3,7 +3,7 @@ class Solution {
         
         // String[] codes = new String[26];
         String codes[] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
-        Set<String> hset = new HashSet<>();
+        Map<String,Boolean> hset = new HashMap<>();
         
         for(String word : words){
             StringBuilder sb = new StringBuilder();
@@ -12,7 +12,7 @@ class Solution {
                 String charCode = codes[ch - 'a'];
                 sb.append(charCode);
             }
-            hset.add(sb.toString());
+            hset.put(sb.toString(),false);
         }
         //System.out.println(hset);
         return hset.size();
