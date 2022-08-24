@@ -2,7 +2,29 @@ class Solution {
     public int minDistance(String word1, String word2) {
         int[][] dp = new int[word1.length()+ 1][word2.length() + 1];
         //return minDistanceRec(word1,word2);
-        return minDistanceMemo(word1,word2,dp);
+        //return minDistanceMemo(word1,word2,dp);
+          return minDistanceDP(word1,word2,dp);
+    }
+    public int minDistanceDP(String s, String t,int[][] dp) {
+        
+        int m = s.length();
+        int n = t.length();
+        for(int i=0; i <= m ; i++){
+            dp[i][0] = i;
+        }
+        for(int j=0; j <= n ; j++){
+            dp[0][j] = j;
+        }
+        for(int i = 1; i <=m ; i++){
+            for(int j = 1 ; j<=n ;j++){
+                if(s.charAt(i -1) == t.charAt(j - 1)){
+                    dp[i][j] = dp[i-1][j-1];
+                } else{
+                    dp[i][j] = Math.min(dp[i-1][j-1],Math.min(dp[i-1][j] , dp[i][j-1])) + 1;
+                }
+            }
+        }
+        return dp[m][n];
     }
      public int minDistanceMemo(String s, String t,int[][] dp) {
         int m = s.length();
