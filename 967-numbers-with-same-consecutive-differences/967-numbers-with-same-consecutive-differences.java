@@ -20,12 +20,10 @@ class Solution {
         }
         if(len(n) == olen){
            list.add(n); 
-           System.out.print(n+" ");
             return;
         }
         for(int j = 0; j <= 9;j++){
-            
-            int nNum = numForm(n,j);
+            int nNum = n *10 + j;
            // System.out.println("called:"+nNum);
             int ld = nNum % 10;
             int sld = (nNum/10) % 10;
