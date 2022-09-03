@@ -12,12 +12,7 @@ class Solution {
         return result;
     }
     public int len(int n){
-        int c = 0;
-        while(n!=0){
-            n /= 10;
-            c++;
-        }
-        return c;
+        return (int)Math.floor(Math.log10(n) + 1);
     }
     public void helper(int n,int k,int olen,ArrayList<Integer> list){
         if(len(n) > olen){
