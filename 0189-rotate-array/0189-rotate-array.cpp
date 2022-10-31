@@ -4,20 +4,9 @@ public:
         int n = nums.size();
         k = k % n;
         
-        int i = 0 , j = n - k - 1;
-        while(i < j){
-            swap(nums[i++],nums[j--]);
-        }
-        i = n - k;
-        j = n - 1;
-        while(i < j){
-            swap(nums[i++],nums[j--]);
-        }
-        i = 0;
-        j = n-1;
-        while(i < j){
-            swap(nums[i++],nums[j--]);
-        }
+        reverse(nums.begin(),nums.end());
+        reverse(nums.begin(),nums.begin()+k);
+        reverse(nums.begin() + k ,nums.end());
         
     }
 };
