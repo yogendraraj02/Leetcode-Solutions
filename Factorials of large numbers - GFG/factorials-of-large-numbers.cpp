@@ -14,19 +14,18 @@ public:
         ans.push_back(1);
         
         for(int fact = 1 ; fact <= N ; fact++){
-            vector<int> prev;
+            // vector<int> prev;
             int carry = 0;
             for(int i =0; i < ans.size(); i++){
                 int digit = ans[i];
                 int prod = fact * digit + carry;
-                prev.push_back(prod % 10);
+                ans[i] = (prod % 10);
                 carry = prod / 10;
             }
             while(carry!=0){
-                prev.push_back(carry % 10);
+                ans.push_back(carry % 10);
                 carry /= 10;
             }
-            ans = prev;
         }
         reverse(ans.begin(),ans.end());
         return ans;
