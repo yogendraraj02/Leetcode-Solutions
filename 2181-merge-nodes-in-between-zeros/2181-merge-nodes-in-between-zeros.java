@@ -11,7 +11,7 @@
 class Solution {
     public ListNode mergeNodes(ListNode head) {
         
-        ArrayList<Integer> result = new ArrayList<Integer>();
+        // ArrayList<Integer> result = new ArrayList<Integer>();
         
         ListNode node = head;
         int sum =0;
@@ -22,7 +22,7 @@ class Solution {
             int val = node.val;
             if(val == 0){
                 if(sum > 0){
-                    result.add(sum);
+                    // result.add(sum);
                     ListNode sumNode = new ListNode(sum);
                     resultNode.next = sumNode;
                     resultNode = resultNode.next;
@@ -34,7 +34,7 @@ class Solution {
             node = node.next;
         }
         
-        System.out.println(result);
+        // System.out.println(result);
         // while(resultHead != null){
         //     System.out.println("node res" + resultHead.val);
         //         resultHead = resultHead.next;
